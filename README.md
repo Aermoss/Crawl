@@ -1,5 +1,5 @@
 # Crawl
-A game made in C++ using Raylib
+A simple endless runner game written in C++ using Raylib.
 
 ## Screenshots
 ![Screenshot 1](res/screenshots/screenshot_1.png)
