@@ -45,7 +45,7 @@ void main(void) {
     baseColor *= vec4(vec3(brightness), 1.0f);
 
     if (remappedUV.x < 0.0f || remappedUV.y < 0.0f || remappedUV.x > 1.0f || remappedUV.y > 1.0f){
-        fragColor = vec4(0.0f, 0.0f, 0.0f, 0.0f);
+        fragColor = vec4(0.0f, 0.0f, 0.0f, 1.0f);
     } else {
         fragColor = baseColor;
     }
