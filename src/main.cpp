@@ -47,10 +47,10 @@ class App {
         uint32_t width, height;
         Sound music;
 
-        const float bpm = 120.0f;
+        const float bpm = 110.0f;
         float speed, score, timeScale, targetX, sinceBeat = 0.0f;
         bool dead = false, started = false, hueState, paused;
-        int hue, maxObstacles, passBeat = 7;
+        int hue, maxObstacles, passBeat = 8 * 4 - 1;
 
         void DrawTextCentered(const char* text, int offset, int size, Color color) {
             DrawText(text, width / 2 - MeasureText(text, size) / 2, height / 2 - size / 2 + offset, size, color);
@@ -74,7 +74,7 @@ class App {
             speed = 0.15f, score = 0.0f, timeScale = 0.0f, sinceBeat = 0.0f;
             paused = false, dead = false, started = false, hueState = true;
             while ((hue = rand()) > RAND_MAX - (RAND_MAX - 5) % 6);
-            maxObstacles = 20, passBeat = 7;
+            maxObstacles = 20, passBeat = 8 * 4 - 1;
             PlaySound(music);
         }
 
@@ -82,12 +82,16 @@ class App {
             InitWindow(0, 0, "Crawl");
             srand((unsigned) time(NULL));
 
-            width = static_cast<uint32_t>(1600.0f / 1920.0f * GetMonitorWidth(0));
-            height = static_cast<uint32_t>(900.0f / 1080.0f * GetMonitorHeight(0));
+            // width = static_cast<uint32_t>(1600.0f / 1920.0f * GetMonitorWidth(0));
+            // height = static_cast<uint32_t>(900.0f / 1080.0f * GetMonitorHeight(0));
+
+            width = GetMonitorWidth(0);
+            height = GetMonitorHeight(0);
 
             SetTargetFPS(GetMonitorRefreshRate(0));
             SetWindowPosition(GetMonitorWidth(0) / 2 - width / 2, GetMonitorHeight(0) / 2 - height / 2);
             SetWindowSize(width, height);
+            ToggleFullscreen();
 
             Image icon = LoadImage("res/icon.png");
             SetWindowIcon(icon);
@@ -113,7 +117,7 @@ class App {
             bool introState = true, deathState = false, startState = false;
 
             InitAudioDevice();
-            music = LoadSound("res/music.wav"), sinceBeat = 0.0f;
+            music = LoadSound("res/music_alt.wav"), sinceBeat = 0.0f;
             PlaySound(music);
 
             while (!WindowShouldClose()) {
