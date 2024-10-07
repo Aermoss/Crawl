@@ -26,7 +26,7 @@ $(objectDir)/%.o: $(sourceDir)/%.cpp
 	$(cc) $(warnings) -c $< -o $@ $(addprefix -I, $(includeDir)) $(flags)
 
 run: $(executable)
-	"$<""
+	"$<"
 
 clean:
 	- del /q "$(subst /,\,$(executable))"
